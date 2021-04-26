@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import { gql, useQuery, useMutation } from '@apollo/client';
 
 const CREATE_GAMESTAT = gql`
-mutation AddGameStat($gameResult: String!, $agent: String!, $map: String!, $kills: String!, $deaths: String!, $assist: String!) {
+mutation AddGameStat($gameResult: String!, $agent: String!, $map: ID!, $kills: String!, $deaths: String!, $assist: String!) {
  addGameStat(gameResult: $gameResult, agent: $agent, map: $map, kills: $kills, deaths: $deaths, assist: $assist) {
    id
    gameResult
