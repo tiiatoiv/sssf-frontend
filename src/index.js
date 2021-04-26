@@ -16,7 +16,10 @@ const GET_GAMESTATS = gql`
     gamestats {
       gameResult
       agent
-      map
+      map {
+        id
+        mapName
+      }
       kills
       deaths
       assist
@@ -31,7 +34,10 @@ client
       gamestats {
         gameResult
         agent
-        map
+        map {
+          id
+          mapName
+        }
         kills
         deaths
         assist
@@ -48,11 +54,12 @@ function GameStats() {
   if (error) return <p>Error :(</p>;
 
   return data.gamestats.map(({ gameResult, agent, map, kills, deaths, assist }) => (
+
     <div style={{backgroundColor: "darkgray", margin: "10px"}} key={gameResult}>
       <h2>Game Result</h2>
       <h3>End result, Agent, Map</h3>
       <p>
-        {gameResult} : {agent} : {map}
+        {gameResult} : {agent} : {map.mapName}
       </p>
       <h3>Kills, Deaths, Assist</h3>
       <p>
