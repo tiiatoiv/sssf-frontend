@@ -5,6 +5,9 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 import { gql, useQuery, useMutation } from '@apollo/client';
+import Header from './Header.js';
+import { Row } from 'react-bootstrap';
+import AddGameInput from './AddGameInput.js';
 
 const client = new ApolloClient({
   uri: 'http://localhost:3000/graphql',
@@ -27,26 +30,21 @@ const GET_GAMESTATS = gql`
   }
 `;
 
-const ADD_GAMESTAT = gql`
-  mutation AddGameStat($gameResulr: String!
-     $agent: String!
-      $map: String!
-       $kills: String!
-      $deaths: String!
-       $assist: String!) {
-    addGameStat(gameResult: $gameresult, agent: $agent, map: $map, kills: $kills, deaths: $deaths, assist: $assist) {
-      id
-      gameResult
-      agent
-      map {
-        id
-        mapName
-      }
-      kills
-      deaths
-      assist
-    }
-  }
+const CREATE_GAMESTAT = gql`
+mutation ($gameResult: String!, $agent: String!, $map: String!, $kills: String!, $deaths: String!, $assist: String!) {
+ addGameStat(gameResult: $gameResult, agent: $agent, map: $map, kills: $kills, deaths: $deaths, assist: $assist) {
+   id
+   gameResult
+   agent
+   map {
+     id
+     mapName
+   }
+   kills
+   deaths
+   assist
+ }
+}
 `;
 
 const UPDATE_GAMESTAT = gql`
@@ -86,29 +84,99 @@ function GameStats() {
   if (error) return <p>Error :(</p>;
 
   return data.gamestats.map(({ gameResult, agent, map, kills, deaths, assist }) => (
-
-    <div style={{backgroundColor: "darkgray", margin: "10px"}} key={gameResult}>
+    <div style={{ display: "flex", alignItems: "center", flexDirection: "row", display : "inline-block"}}>
+    <Row>
+    <div style={{backgroundColor: "white", margin: "10px", padding: "20px", width: "200px"}} key={gameResult}>
       <h2>Game Result</h2>
       <h3>End result, Agent, Map</h3>
       <p>
-        {gameResult} : {agent} : {data.gamestats.map.mapName}
+        {gameResult} : {agent} : {map.mapName ? map.mapName : "Jotai muuta tekstii mitä haluut tilalle"}
       </p>
       <h3>Kills, Deaths, Assist</h3>
       <p>
         {kills} : {deaths} : {assist}
       </p>
       </div>
+      </Row>
+      </div>
   ));
 }
+
+function AddGameStat() {
+  let input;
+  const [addGameStat, { data }] = useMutation(CREATE_GAMESTAT);
+
+  return (
+    <div>
+      <form
+        onSubmit={e => {
+          e.preventDefault();
+          addGameStat({
+            variables: {
+              gameResult: input.value,
+              agent: input.value,
+            map: input.value,
+          kills: input.value,
+        deaths: input.value,
+      assist: input.value
+    } });
+          input.value = '';
+        }}
+      >
+        <input
+          ref={node => {
+            input = node;
+          }}
+        />
+        <button type="submit">Add GameStat</button>
+      </form>
+    </div>
+  );
+}
+
+function NewGameStat() {
+  const [gameResult, setGameResult] = React.useState("");
+  const [agent, setAgent] = React.useState("");
+  const [map, setMap] = React.useState("");
+  const [kills, setKills] = React.useState("");
+  const [deaths, setDeaths] = React.useState("");
+  const [assist, setAssist] = React.useState("");
+  const [addGameStat, { loading, error }] = useMutation(CREATE_GAMESTAT);
+
+  function handleCreateGameStat(event) {
+    event.preventDefault();
+    // the mutate function also doesn't return a promise
+    addGameStat({ variables: { gameResult, agent, map, kills, deaths, assist } });
+  }
+
+  return (
+    <div>
+      <h1>New Gamestat</h1>
+      <form onSubmit={handleCreateGameStat}>
+        <input onChange={(event) => setGameResult(event.target.value)} />
+        <textarea onChange={(event) => setAgent(event.target.value)} />
+        <button disabled={loading} type="submit">
+          Submit
+        </button>
+        {error && <p>{error.message}</p>}
+      </form>
+    </div>
+  );
+}
+
 
 
 const CreateLink = () => {
   const [formState, setFormState] = useState({
-    description: '',
-    url: ''
+    gameResult: '',
+    agent: '',
+    map: '',
+    kills: '',
+    deaths: '',
+    assist: '',
   });
 
-  const [createLink] = useMutation(ADD_GAMESTAT, {
+  const [createLink] = useMutation(CREATE_GAMESTAT, {
     variables: {
       gameResult: formState.gameResult,
       agent: formState.agent,
@@ -125,6 +193,7 @@ const CreateLink = () => {
         onSubmit={(e) => {
           e.preventDefault();
           createLink();
+          console.log( formState );
         }}
       >
         <div className="flex flex-column mt3">
@@ -207,34 +276,6 @@ const CreateLink = () => {
   );
 };
 
-
-
-
-
-function AddGameStat() {
-  let input;
-  const [addGameStat, { data }] = useMutation(ADD_GAMESTAT);
-
-  return (
-    <div>
-      <form
-        onSubmit={e => {
-          e.preventDefault();
-          addGameStat({ variables: { type: input.value } });
-          input.value = '';
-        }}
-      >
-        <input
-          ref={node => {
-            input = node;
-          }}
-        />
-        <button type="submit">Add GameStat</button>
-      </form>
-    </div>
-  );
-}
-
 function GamestatsAnother() {
   const { loading, error, data } = useQuery(GET_GAMESTATS);
   const [UpdateGameStat] = useMutation(UPDATE_GAMESTAT);
@@ -270,9 +311,10 @@ function GamestatsAnother() {
 function App() {
   return (
     <ApolloProvider client={client}>
-      <div>
+      <div style={{ backgroundColor: "#313131"}}>
         <h2>Game Stats</h2>
-        <CreateLink />
+        <Header />
+        <AddGameInput />
         <GameStats />
       </div>
     </ApolloProvider>
