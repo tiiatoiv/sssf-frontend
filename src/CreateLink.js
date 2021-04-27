@@ -8,6 +8,7 @@ const CreateLink = () => {
   
     const [createLink] = useMutation(ADD_GAMESTAT, {
       variables: {
+        userID: formState.userID,
         gameResult: formState.gameResult,
         agent: formState.agent,
         map: formState.map,
@@ -26,7 +27,19 @@ const CreateLink = () => {
           }}
         >
           <div className="flex flex-column mt3">
-            <input
+          <input
+              className="mb2"
+              value={formState.userID}
+              onChange={(e) =>
+                setFormState({
+                  ...formState,
+                  userID: e.target.value
+                })
+              }
+              type="text"
+              placeholder="Agent"
+            />
+              <input
               className="mb2"
               value={formState.gameResult}
               onChange={(e) =>

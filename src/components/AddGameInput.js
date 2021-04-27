@@ -3,9 +3,10 @@ import { gql, useQuery, useMutation } from '@apollo/client';
 import FormControl from 'react-bootstrap';
 
 const CREATE_GAMESTAT = gql`
-mutation AddGameStat($gameResult: String!, $agent: String!, $map: ID!, $kills: String!, $deaths: String!, $assist: String!) {
- addGameStat(gameResult: $gameResult, agent: $agent, map: $map, kills: $kills, deaths: $deaths, assist: $assist) {
+mutation AddGameStat($userID: String!, $gameResult: String!, $agent: String!, $map: ID!, $kills: String!, $deaths: String!, $assist: String!) {
+ addGameStat(userID: $userID, gameResult: $gameResult, agent: $agent, map: $map, kills: $kills, deaths: $deaths, assist: $assist) {
    id
+   userID
    gameResult
    agent
    map {
@@ -20,6 +21,7 @@ mutation AddGameStat($gameResult: String!, $agent: String!, $map: ID!, $kills: S
 `;
 
 const AddGameInput = () => {
+    const [userID, setUserID] = useState('');
     const [gameResult, setGameResult] = useState('');
     const [agent, setAgent] = useState('');
     const [map, setMap] = useState('');
@@ -32,11 +34,18 @@ const AddGameInput = () => {
         <form style={{margin: "10px", padding: "10px"}}
         onSubmit={(e) => {
           e.preventDefault();
-          addGameStat({variables: {gameResult: gameResult, agent: agent, map: map, kills: kills, deaths: deaths, assist: assist }});
+          addGameStat({variables: {userID: userID, gameResult: gameResult, agent: agent, map: map, kills: kills, deaths: deaths, assist: assist }});
           console.log( gameResult, kills );
         }}
       >
         <div className="flex flex-column mt3">
+          <input
+              className="mb2"
+              value={userID}
+              onChange={e => (setUserID(e.target.value))}
+              type="text"
+              placeholder="User ID"
+            />
           <input
             className="mb2"
             value={gameResult}
