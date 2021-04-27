@@ -8,6 +8,8 @@ import { gql, useQuery, useMutation } from '@apollo/client';
 import Header from './Header.js';
 import { Row } from 'react-bootstrap';
 import AddGameInput from './AddGameInput.js';
+import avatar from './killjoy-avatar.jpg';
+import mapavatar from './bind-avatar.jpg';
 
 const client = new ApolloClient({
   uri: 'http://localhost:3000/graphql',
@@ -89,6 +91,8 @@ function GameStats() {
     <div style={{backgroundColor: "white", margin: "10px", padding: "20px", width: "200px"}} key={gameResult}>
       <h2>Game Result</h2>
       <h3>End result, Agent, Map</h3>
+      <img src={avatar} alt="Logo" style={{ width: '100px '}}/>;
+      <img src={mapavatar} alt="Logo" style={{ width: '100px '}}/>;
       <p>
         {gameResult} : {agent} : {map.mapName ? map.mapName : "Jotai muuta tekstii mitä haluut tilalle"}
       </p>
@@ -312,9 +316,9 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <div style={{ backgroundColor: "#313131"}}>
-        <h2>Game Stats</h2>
         <Header />
-        <AddGameInput />
+        <h2>Add Stat</h2>
+        <AddGameInput/>
         <GameStats />
       </div>
     </ApolloProvider>

@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import { gql, useQuery, useMutation } from '@apollo/client';
+import FormControl from 'react-bootstrap';
 
 const CREATE_GAMESTAT = gql`
 mutation AddGameStat($gameResult: String!, $agent: String!, $map: ID!, $kills: String!, $deaths: String!, $assist: String!) {
@@ -28,7 +29,7 @@ const AddGameInput = () => {
 
     const [addGameStat] = useMutation(CREATE_GAMESTAT, { onError: ({ graphQLErrors }) => console.log("TÄMÄ VIRHE", graphQLErrors)});
     return (
-        <form
+        <form style={{margin: "10px", padding: "10px"}}
         onSubmit={(e) => {
           e.preventDefault();
           addGameStat({variables: {gameResult: gameResult, agent: agent, map: map, kills: kills, deaths: deaths, assist: assist }});
