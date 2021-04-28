@@ -6,6 +6,7 @@ import { gql, useQuery, useMutation } from '@apollo/client';
 import { Row } from 'react-bootstrap';
 import avatar from './killjoy-avatar.jpg';
 import mapavatar from './bind-avatar.jpg';
+import cypher from './cypher-avatar.jpg';
 
 const client = new ApolloClient({
   uri: 'http://localhost:3000/graphql',
@@ -29,12 +30,27 @@ const GET_GAMESTATS = gql`
   }
 `;
 
+const GET_GAMESTATSBYUSER = gql`
+  query getGameStatsByUser {
+    gameStatsByUser
+    (id:"testuser") {
+      userID
+      gameResult
+      agent
+      map {
+        id
+        mapName
+      }
+    }
+  }
+`;
+
+
 function GameStats() {
     const { loading, error, data } = useQuery(GET_GAMESTATS);
   
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error :(</p>;
-
   
     return data.gamestats.map(({ userID, gameResult, agent, map, kills, deaths, assist }) => 
     (
