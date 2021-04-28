@@ -4,9 +4,6 @@
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 import { gql, useQuery, useMutation } from '@apollo/client';
 import { Row } from 'react-bootstrap';
-import avatar from './killjoy-avatar.jpg';
-import mapavatar from './bind-avatar.jpg';
-import cypher from './cypher-avatar.jpg';
 
 const client = new ApolloClient({
   uri: 'http://localhost:3000/graphql',
@@ -59,9 +56,9 @@ function GameStats() {
       <div style={{backgroundColor: "white", margin: "10px", padding: "20px", width: "200px"}} key={gameResult}>
       
         <h2> { userID } </h2>
-        <h3>End result, Agent, Map</h3>
-        <img src={avatar} alt="Logo" style={{ width: '100px '}}/>;
-        <img src={mapavatar} alt="Logo" style={{ width: '100px '}}/>;
+        <h3>End result | Agent | Map</h3>
+        <img src={require('./images/' + agent + '.jpg')} alt="Logo" style={{ width: '100px '}}/>;
+        <img src={require('./images/' + map.mapName + '.jpg')} alt="Logo" style={{ width: '100px '}}/>;
         <p>
           {gameResult} : {agent} : {map.mapName ? map.mapName : "Jotai muuta tekstii mitä haluut tilalle"}
         </p>
