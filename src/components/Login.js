@@ -3,6 +3,7 @@ import { useHistory } from 'react-router';
 import { useMutation, gql, useQuery, useLazyQuery } from '@apollo/client';
 import { Link } from 'react-router-dom';
 import { AUTH_TOKEN } from '../constants';
+import LoginStyle from './login.css';
 
 const SIGNUP_MUTATION = gql`
   mutation SignupMutation(
@@ -14,7 +15,6 @@ const SIGNUP_MUTATION = gql`
       password: $password,
     ) {
       username
-      token
     }
   }
 `;
@@ -73,7 +73,7 @@ const Login = () => {
   });
 
   return (
-    <div>
+    <div className="loginform">
       <h4 className="mv3">
         {formState.login ? 'Login' : 'Sign Up'}
       </h4>
@@ -103,13 +103,11 @@ const Login = () => {
       </div>
       <div className="flex mt3">
       <button
-        className="pointer mr2 button"
         onClick={formState.login ? login : signup}
       >
         {formState.login ? 'login' : 'create account'}
       </button>
       <button
-        className="pointer button"
         onClick={(e) =>
           setFormState({
             ...formState,
