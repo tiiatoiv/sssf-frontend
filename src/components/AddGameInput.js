@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import { gql, useQuery, useMutation } from '@apollo/client';
 import FormControl from 'react-bootstrap';
 import { AUTH_TOKEN } from '../constants';
+import { useHistory } from 'react-router';
 
 const CREATE_GAMESTAT = gql`
 mutation AddGameStat($userID: String!, $gameResult: String!, $agent: String!, $map: ID!, $kills: String!, $deaths: String!, $assist: String!) {
@@ -22,6 +23,7 @@ mutation AddGameStat($userID: String!, $gameResult: String!, $agent: String!, $m
 `;
 
 const AddGameInput = () => {
+    const history = useHistory();
     const [userID, setUserID] = useState('');
     const [gameResult, setGameResult] = useState('');
     const [agent, setAgent] = useState('');
@@ -31,13 +33,15 @@ const AddGameInput = () => {
     const [assist, setAssist] = useState('');
     const authToken = localStorage.getItem(AUTH_TOKEN);
 
-    const [addGameStat] = useMutation(CREATE_GAMESTAT, { onError: ({ graphQLErrors }) => console.log("TÄMÄ VIRHE", graphQLErrors)});
+    const [addGameStat] = useMutation(CREATE_GAMESTAT,
+      { onError: ({ graphQLErrors }) => console.log("TÄMÄ VIRHE", graphQLErrors)});
     return (
         <form style={{margin: "10px", padding: "10px"}}
         onSubmit={(e) => {
           e.preventDefault();
           addGameStat({variables: {userID: userID, gameResult: gameResult, agent: agent, map: map, kills: kills, deaths: deaths, assist: assist }});
           console.log( gameResult, kills );
+          history.push('/');
         }}
       >
         <div className="flex flex-column mt3">
