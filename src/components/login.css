@@ -25,3 +25,19 @@ button {
 form {
     align-items: center;
 }
+
+ul {
+    width: 100%;
+}
+ li {
+    color: white;
+    text-align: center;
+}
+
+li a {
+    display: block;
+    padding: 10px;
+    color: #dddddd;
+    text-decoration: none;
+    padding: 14px 16px;
+  }

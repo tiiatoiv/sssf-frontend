@@ -14,6 +14,7 @@ import { AUTH_TOKEN } from './constants';
 import { ApolloLink } from '@apollo/client';
 import { createHttpLink } from 'apollo-link-http';
 import './example.css';
+import GameStatsByUser from './components/GameStatsByUserid.js';
 
 const httpLink = createHttpLink({
   uri: 'http://localhost:3000/graphql'
@@ -106,7 +107,8 @@ function Home() {
   return (
     <div style={{ backgroundColor: '#313131' }}>
       <h2>Home</h2>
-      <GameStats />
+      {authToken ?
+      <GameStats /> : <p>YOu have not loggen in to see stats</p>}
     </div>
   );
 }
@@ -136,6 +138,7 @@ function Profile() {
     <div>
       <h2>Profile</h2>
       <p>Game stats by user token username</p>
+      <GameStatsByUser />
     </div>
   );
 }
