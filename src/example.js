@@ -15,7 +15,8 @@ import { ApolloLink } from '@apollo/client';
 import { createHttpLink } from 'apollo-link-http';
 import './example.css';
 import GameStatsByUser from './components/GameStatsByUserid.js';
-
+import { useHistory } from 'react-router';
+import HeaderPlsWork from './components/HeaderPlsWork.js';
 const httpLink = createHttpLink({
   uri: 'http://localhost:3000/graphql'
 });
@@ -34,7 +35,7 @@ const authLink = setContext((_, { headers }) => {
 const client = new ApolloClient({
   uri: 'http://localhost:3000/graphql',
   link: authLink.concat(httpLink),
-  cache: new InMemoryCache()
+  cache: new InMemoryCache(),
 });
 
   const authToken = localStorage.getItem(AUTH_TOKEN);
@@ -107,6 +108,7 @@ function Home() {
   return (
     <div style={{ backgroundColor: '#313131' }}>
       <h2>Home</h2>
+ 
       {authToken ?
       <GameStats /> : <p>YOu have not loggen in to see stats</p>}
     </div>
@@ -126,12 +128,16 @@ function Add() {
 
 function Login() {
   return (
-    <div>
-      <h2>Login</h2>
+    
+    <div className="flex flex-fixed">
+    {authToken ? (
+      <HeaderPlsWork />
+    ) : (
       <Logincomponent />
-    </div>
+    )}
+  </div>
   );
-}
+    }
 
 function Profile() {
   return (
