@@ -38,6 +38,7 @@ const GET_GAMESTATSBYUSER = gql`
       userID
       gameResult
       agent {
+        id
         agentName
         agentType
       }
@@ -64,9 +65,7 @@ function GameStats() {
       
         <h2> { userID } </h2>
         <h3>End result | Agent | Map</h3>
-        <img src={require('./images/' + agent.agentName + '.jpg')} alt="Logo" style={{ width: '100px '}}/>;
-        <img src={require('./images/' + map.mapName + '.jpg')} alt="Logo" style={{ width: '100px '}}/>;
-        <p>
+          <p>
           {gameResult} : {agent.agentName} : {map.mapName ? map.mapName : "Jotai muuta tekstii mitä haluut tilalle"}
         </p>
         <h3>Kills, Deaths, Assist</h3>
