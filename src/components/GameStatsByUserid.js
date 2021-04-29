@@ -26,7 +26,6 @@ const GET_GAMESTATSBYUSER = gql`
   }
 `;
 
-
 function GameStatsByUser() {
     const { loading, error, data } = useQuery(GET_GAMESTATSBYUSER);
     console.log("TÄMÄ USID", data);

@@ -35,6 +35,9 @@ const LOGIN_QUERY = gql`
 `;
 
 const Login = () => {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [user, setUser] = useState();
   const history = useHistory();
   const [formState, setFormState] = useState({
     login: true,
@@ -50,7 +53,8 @@ const Login = () => {
     onCompleted: ({ login}) => {
       localStorage.setItem(AUTH_TOKEN, login.token);
       console.log("LOGI TOKE", login.token);
-      history.push('/');
+      history.push('/profile');
+      window.location.reload();
     },
     onError(error) {
       console.log("TÄMÄ ERRO");
@@ -68,7 +72,7 @@ const Login = () => {
     onCompleted: ({ signup }) => {
       console.log("KIRJ TOKE", signup.token);
       localStorage.setItem(AUTH_TOKEN, signup.token);
-      history.push('/');
+      history.push('/login');
     }
   });
 

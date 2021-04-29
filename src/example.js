@@ -64,8 +64,8 @@ export default function BasicExample() {
             <Link to="/add">Add</Link>
           </li>
           <li style={{ listStyle: 'none'}}>
-            <Link to="/login">Login</Link>
-          </li>
+            <Link to="/login">Login/Logout</Link>
+            </li>
           <li style={{ listStyle: 'none'}}>
             <Link to="/profile">Profile</Link>
           </li>
@@ -144,7 +144,8 @@ function Profile() {
     <div>
       <h2>Profile</h2>
       <p>Game stats by user token username</p>
-      <GameStatsByUser />
+      {authToken ? 
+      <GameStatsByUser /> : <p>You have not logged in</p>}
     </div>
   );
 }
