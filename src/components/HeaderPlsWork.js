@@ -16,7 +16,7 @@ const Header = () => {
             className="ml1 pointer black"
             onClick={() => {
               localStorage.removeItem(AUTH_TOKEN);
-              history.push(`/login`);
+              history.push(`/home`);
             }}
           >Log out</button>
         ) : (

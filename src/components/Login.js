@@ -34,6 +34,26 @@ const LOGIN_QUERY = gql`
   }
 `;
 
+const USERINFO_MUTATION = gql`
+  mutation SignupMutation(
+    $userID: String!,
+    $main: String!,
+    $description: String!,
+  ) {
+    addUserInfo(
+      userID: $username,
+      main: "not submitted",
+      description: "not submitted",
+    ) {
+      id
+      userID
+      username
+      main
+      description
+    }
+  }
+`;
+
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
