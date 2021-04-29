@@ -17,8 +17,10 @@ import './example.css';
 import GameStatsByUser from './components/GameStatsByUserid.js';
 import { useHistory } from 'react-router';
 import HeaderPlsWork from './components/HeaderPlsWork.js';
+
+
 const httpLink = createHttpLink({
-  uri: 'http://localhost:3000/graphql'
+  uri: 'https://sssfprojectbackend.herokuapp.com/graphql/'
 });
 
 const authLink = setContext((_, { headers }) => {
@@ -33,7 +35,7 @@ const authLink = setContext((_, { headers }) => {
 });
 
 const client = new ApolloClient({
-  uri: 'http://localhost:3000/graphql',
+  uri: 'https://sssfprojectbackend.herokuapp.com/graphql/',
   link: authLink.concat(httpLink),
   cache: new InMemoryCache(),
 });
@@ -55,7 +57,7 @@ export default function BasicExample() {
       <div className="example">
     <Router>
       <div  style={{ backgroundColor: '#313131'  }}>
-        <h1>Stats App</h1>
+        <h1 style={{fontFamily: 'Calibri'}}>Stats App jee</h1>
         <ul>
           <li style={{ listStyle: 'none'}}>
             <Link to="/">Home</Link>
@@ -107,10 +109,8 @@ export default function BasicExample() {
 function Home() {
   return (
     <div style={{ backgroundColor: '#313131' }}>
-      <h2>Home</h2>
- 
       {authToken ?
-      <GameStats /> : <p>YOu have not loggen in to see stats</p>}
+      <GameStats /> : <div style={{height: '1000px'}}><h1 style={{fontFamily: 'Calibri'}}>You have not logged in.</h1></div> }
     </div>
   );
 }

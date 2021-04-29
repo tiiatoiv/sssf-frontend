@@ -15,7 +15,11 @@ const GET_GAMESTATS = gql`
     gamestats {
       userID
       gameResult
-      agent
+      agent {
+        id
+        agentName
+        agentType
+      }
       map {
         id
         mapName
@@ -33,7 +37,10 @@ const GET_GAMESTATSBYUSER = gql`
     (id:"testuser") {
       userID
       gameResult
-      agent
+      agent {
+        agentName
+        agentType
+      }
       map {
         id
         mapName
@@ -47,7 +54,7 @@ function GameStats() {
     const { loading, error, data } = useQuery(GET_GAMESTATS);
   
     if (loading) return <p>Loading...</p>;
-    if (error) return <p>Error :(</p>;
+    if (error) return <p>Error :(</p>;  
   
     return data.gamestats.map(({ userID, gameResult, agent, map, kills, deaths, assist }) => 
     (
@@ -57,10 +64,10 @@ function GameStats() {
       
         <h2> { userID } </h2>
         <h3>End result | Agent | Map</h3>
-        <img src={require('./images/' + agent + '.jpg')} alt="Logo" style={{ width: '100px '}}/>;
+        <img src={require('./images/' + agent.agentName + '.jpg')} alt="Logo" style={{ width: '100px '}}/>;
         <img src={require('./images/' + map.mapName + '.jpg')} alt="Logo" style={{ width: '100px '}}/>;
         <p>
-          {gameResult} : {agent} : {map.mapName ? map.mapName : "Jotai muuta tekstii mitä haluut tilalle"}
+          {gameResult} : {agent.agentName} : {map.mapName ? map.mapName : "Jotai muuta tekstii mitä haluut tilalle"}
         </p>
         <h3>Kills, Deaths, Assist</h3>
         <p>

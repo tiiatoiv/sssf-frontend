@@ -5,12 +5,15 @@ import { AUTH_TOKEN } from '../constants';
 import { useHistory } from 'react-router';
 
 const CREATE_GAMESTAT = gql`
-mutation AddGameStat($userID: String!, $gameResult: String!, $agent: String!, $map: ID!, $kills: String!, $deaths: String!, $assist: String!) {
+mutation AddGameStat($userID: String!, $gameResult: String!, $agent: ID!, $map: ID!, $kills: String!, $deaths: String!, $assist: String!) {
  addGameStat(userID: $userID, gameResult: $gameResult, agent: $agent, map: $map, kills: $kills, deaths: $deaths, assist: $assist) {
    id
    userID
    gameResult
-   agent
+   agent {
+     agentName
+     agentType
+   }
    map {
      id
      mapName
