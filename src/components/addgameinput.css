@@ -22,6 +22,10 @@ input {
     margin: 10px;
 }
 
+.formdiv {
+
+}
+
 .submitbutton {
     height: 60px;
     width: 160px;
@@ -44,6 +48,7 @@ button {
 
 form {
     align-items: center;
+    display: inline-block;
 }
 
 ul {

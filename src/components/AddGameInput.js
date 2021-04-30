@@ -49,7 +49,7 @@ const AddGameInput = () => {
           history.push('/');
         }}
       >
-        <div className="flex flex-column mt3">
+        <div className="formdiv">
           <input
               className="mb2"
               value={userID}
@@ -64,13 +64,13 @@ const AddGameInput = () => {
             type="text"
             placeholder="Game result"
           />
-          <select 
-            value={agent} 
-            onChange={e => (setGameResult(e.target.value))}
-            defaultValue={"608af1308115651299266c9b"}
-            >
-            <option selected value="608af1308115651299266c9b">Killjoy</option>
-          </select>
+          <input
+            className="mb2"
+            value={agent}
+            onChange={e => (setMap(e.target.value))}
+            type="text"
+            placeholder="Agent"
+          />
           <input
             className="mb2"
             value={map}
