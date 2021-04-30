@@ -9,6 +9,7 @@ import { setContext } from '@apollo/client/link/context';
 import { AUTH_TOKEN } from './constants';
 import { ApolloLink } from '@apollo/client';
 import { createHttpLink } from 'apollo-link-http';
+const PORT = process.env.PORT || 3000;
 
 
 const httpLink = createHttpLink({
