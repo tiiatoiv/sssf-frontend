@@ -24,6 +24,7 @@ button {
 
 form {
     align-items: center;
+    display: inline-block;
 }
 
 ul {
