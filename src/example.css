@@ -1,8 +1,16 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
 
+.wholeapp {
+}
+
 .example {
     text-align: center;
+    background-color: #313131;
+  }
+
+  .router {
+    width: 600px;
   }
   
   .App-logo {
@@ -40,6 +48,26 @@
     font-family: 'Roboto';
     font-weight: bold;
   }
+
+  
+.loginform {
+  display: inline-block;
+
+}
+
+
+.mb2 {
+  align-self: center;
+  height: 30px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  margin: 10px;
+}
+
+.formdiv {
+
+}
+
   li {
     float: left;
     font-weight: bold;

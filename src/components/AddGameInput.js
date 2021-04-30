@@ -49,7 +49,8 @@ const AddGameInput = () => {
           history.push('/');
         }}
       >
-        <div className="formdiv">
+        <div className="addform">
+          <h3 style={{fontSize: '20px'}}>Add stat</h3>
           <input
               className="mb2"
               value={userID}
@@ -99,8 +100,8 @@ const AddGameInput = () => {
             type="text"
             placeholder="Assist"
           />
+          <button className="submitbutton" type="submit">Submit</button>
         </div>
-        <button className="submitbutton" type="submit">Submit</button>
       </form>
       </div>
     );

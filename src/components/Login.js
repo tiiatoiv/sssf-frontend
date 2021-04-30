@@ -99,7 +99,7 @@ const Login = () => {
 
   return (
     <div className="loginform">
-      <h4 className="mv3">
+      <h4 className="formtitle">
         {formState.login ? 'Login' : 'Sign Up'}
       </h4>
       <div className="flex flex-column">
@@ -128,11 +128,13 @@ const Login = () => {
       </div>
       <div className="flex mt3">
       <button
+      className="loginbutton"
         onClick={formState.login ? login : signup}
       >
-        {formState.login ? 'login' : 'create account'}
+        {formState.login ? 'LOGIN' : 'CREATE ACCOUNT'}
       </button>
       <button
+        className="changeform"
         onClick={(e) =>
           setFormState({
             ...formState,

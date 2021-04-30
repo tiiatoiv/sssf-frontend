@@ -3,34 +3,16 @@
 .example {
     text-align: center;
   }
-  
-  .App-logo {
-    height: 40vmin;
-    pointer-events: none;
-  }
-  
-  @media (prefers-reduced-motion: no-preference) {
-    .App-logo {
-      animation: App-logo-spin infinite 20s linear;
-    }
-  }
-  
-  .App-header {
-    background-color: #282c34;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: calc(10px + 2vmin);
-    color: white;
-  }
 
   div {
       margin: 10px;
   }
-  ul {
-    float: left;
+
+  .statdiv {
+    background-color: white;
+    margin: "10px";
+    padding: "20px";
+    width: "200px";
   }
 
   li {
@@ -52,17 +34,18 @@
   }
   
   h2 {
-      text-decoration: underline;
       font-family: 'Roboto';
       letter-spacing: 0px;
+      margin-bottom: 20px;
   }
 
   h3 {
       font-family: 'Roboto';
       letter-spacing: 1px;
+      font-size: 14px;
   }
 
   p {
       font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-      font-size: 18px;
+      font-size: 20px;
   }

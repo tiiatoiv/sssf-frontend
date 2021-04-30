@@ -54,6 +54,7 @@ const client = new ApolloClient({
 
 export default function BasicExample() {
   return (
+    <div className="wholeapp">
     <ApolloProvider client={client}>
       <div className="example">
     <Router>
@@ -69,7 +70,7 @@ export default function BasicExample() {
           <li style={{ listStyle: 'none'}}>
             <Link to="/profile">Profile</Link>
           </li>
-          <li style={{ listStyle: 'none', position: 'absolute', right: 0}}>
+          <li style={{ listStyle: 'none', position: 'absolute', right: 100}}>
             <Link to="/login">Login/Logout</Link>
             </li>
         </ul>
@@ -101,6 +102,7 @@ export default function BasicExample() {
     </Router>
     </div>
     </ApolloProvider>
+    </div>
   );
 }
 
@@ -109,7 +111,8 @@ export default function BasicExample() {
 
 function Home() {
   return (
-    <div style={{ backgroundColor: '#313131' }}>
+    <div style={{ backgroundColor: '#313131', height: '1000px', marginTop: '80px'}}>
+      <h2 style={{color: 'white'}}></h2>
       {authToken ?
       <GameStats /> : <div style={{height: '1000px'}}><p>You have not logged in.</p></div> }
     </div>
@@ -118,8 +121,7 @@ function Home() {
 
 function Add() {
   return (
-    <div>
-      <h2>Add</h2>
+    <div style={{height: '1000px'}}>
       {authToken ?
       <AddGameInput /> : <div style={{height: '1000px'}}><p>You have not logged in.</p></div>}
     </div>
@@ -133,7 +135,7 @@ function Login() {
     {authToken ? ( <div><p>Log out</p>
       <HeaderPlsWork /></div>
     ) : (
-      <div><p>Log in or register</p>
+      <div><p style={{color: 'white', marginTop: '80px'}}>Log in or register</p>
       <Logincomponent /> </div>
     )}
   </div>
@@ -143,9 +145,9 @@ function Login() {
 
 function Profile() {
   return (
-    <div>
-      <h2>Profile</h2>
-      <p>Hello {currentUser}!</p>
+    <div style={{height: '1000px'}}>
+      <h2 style={{color: 'white', marginTop: '60px'}}>Profile</h2>
+      <p style={{color: 'white', marginTop: '20px'}}>Hello {currentUser}!</p>
 
       {authToken ? 
       <GameStatsByUser /> : <div style={{height: '1000px'}}><p>You have not logged in.</p></div>}
