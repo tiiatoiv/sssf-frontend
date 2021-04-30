@@ -3,6 +3,7 @@
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 import { gql, useQuery, useMutation } from '@apollo/client';
 import { Row } from 'react-bootstrap';
+import { AUTH_USERNAME } from '../constants';
 
 const client = new ApolloClient({
   uri: 'http://localhost:3000/graphql',
@@ -56,7 +57,7 @@ const GET_GAMESTATS = gql`
 `;
 
 function GameStatsByUser() {
-  const currentUser = localStorage.getItem('currentUsername');
+  const currentUser = localStorage.getItem(AUTH_USERNAME);
   console.log("TÄMÄ LOCS", currentUser);
     const { loading, error, data } = useQuery(GET_GAMESTATSBYUSER,
       { variables: {
