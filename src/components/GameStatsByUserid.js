@@ -14,7 +14,7 @@ const GET_GAMESTATSBYUSER = gql`
   query GetGameStatsByUserID(
     $userID: String!
     ) {
-      gamestatsbyuser (
+      gameStatsByUser (
         userID: $userID,
     ) {
       gameResult
