@@ -10,7 +10,7 @@ import GameStats from './components/GameStats.js';
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 import Logincomponent from './components/Login.js';
 import { setContext } from '@apollo/client/link/context';
-import { AUTH_TOKEN } from './constants';
+import { AUTH_TOKEN, AUTH_USERNAME } from './constants';
 import { ApolloLink } from '@apollo/client';
 import { createHttpLink } from 'apollo-link-http';
 import './example.css';
@@ -41,6 +41,7 @@ const client = new ApolloClient({
 });
 
   const authToken = localStorage.getItem(AUTH_TOKEN);
+  const currentUser = localStorage.getItem(AUTH_USERNAME);
 
 // This site has 3 pages, all of which are rendered
 // dynamically in the browser (not server rendered).
@@ -66,11 +67,11 @@ export default function BasicExample() {
             <Link to="/add">Add</Link>
           </li>
           <li style={{ listStyle: 'none'}}>
-            <Link to="/login">Login/Logout</Link>
-            </li>
-          <li style={{ listStyle: 'none'}}>
             <Link to="/profile">Profile</Link>
           </li>
+          <li style={{ listStyle: 'none', position: 'absolute', right: 0}}>
+            <Link to="/login">Login/Logout</Link>
+            </li>
         </ul>
 
         <hr />
@@ -129,10 +130,11 @@ function Login() {
   return (
     <div style={{height: '1000px'}}>
     <div className="flex flex-fixed">
-    {authToken ? (
-      <HeaderPlsWork />
+    {authToken ? ( <div><p>Log out</p>
+      <HeaderPlsWork /></div>
     ) : (
-      <Logincomponent />
+      <div><p>Log in or register</p>
+      <Logincomponent /> </div>
     )}
   </div>
   </div>
@@ -143,7 +145,8 @@ function Profile() {
   return (
     <div>
       <h2>Profile</h2>
-      <p>Game stats by user token username</p>
+      <p>Hello {currentUser}!</p>
+
       {authToken ? 
       <GameStatsByUser /> : <div style={{height: '1000px'}}><p>You have not logged in.</p></div>}
     </div>
