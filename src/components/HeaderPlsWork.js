@@ -17,6 +17,7 @@ const Header = () => {
             onClick={() => {
               localStorage.removeItem(AUTH_TOKEN);
               history.push(`/`);
+              window.location.reload();
             }}
           >Log out</button>
         ) : (

@@ -75,7 +75,7 @@ const Login = () => {
       localStorage.setItem(AUTH_TOKEN, login.token);
       localStorage.setItem('currentUsername', login.username);
       console.log("LOGI TOKE", login.token);
-      history.push('/profile');
+      history.push('/');
       window.location.reload();
     },
     onError(error) {
@@ -93,6 +93,7 @@ const Login = () => {
     },
     onCompleted: ({ signup }) => {
       history.push('/');
+      window.location.reload();
     }
   });
 
