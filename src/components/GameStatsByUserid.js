@@ -11,10 +11,10 @@ const client = new ApolloClient({
 
 const GET_GAMESTATSBYUSER = gql`
   query GetGameStatsByUserID(
-    $userID: String!,
+    $userID: String!
     ) {
       gamestatsbyuser (
-        userID: $userID,
+        userID: $userID
     ) {
       userID
       gameResult
