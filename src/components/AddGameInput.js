@@ -64,13 +64,12 @@ const AddGameInput = () => {
             type="text"
             placeholder="Game result"
           />
-          <input
-            className="mb2"
-            value={agent}
-            onChange={e => (setAgent(e.target.value))}
-            type="text"
-            placeholder="Agent"
-          />
+          <select 
+            value={agent} 
+            onChange={e => (setGameResult(e.target.value))}
+            >
+            <option selected value="608af1308115651299266c9b">Killjoy</option>
+          </select>
           <input
             className="mb2"
             value={map}
