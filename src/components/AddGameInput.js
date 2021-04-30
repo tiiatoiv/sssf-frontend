@@ -67,6 +67,7 @@ const AddGameInput = () => {
           <select 
             value={agent} 
             onChange={e => (setGameResult(e.target.value))}
+            defaultValue={"608af1308115651299266c9b"}
             >
             <option selected value="608af1308115651299266c9b">Killjoy</option>
           </select>

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router';
 import { useMutation, gql, useQuery, useLazyQuery } from '@apollo/client';
 import { Link } from 'react-router-dom';
-import { AUTH_TOKEN } from '../constants';
+import { AUTH_TOKEN, AUTH_USERNAME } from '../constants';
 import './login.css';
 
 const SIGNUP_MUTATION = gql`
@@ -73,7 +73,7 @@ const Login = () => {
     onCompleted: ({ login}) => {
       console.log("TÄMÄ DATA", login);
       localStorage.setItem(AUTH_TOKEN, login.token);
-      localStorage.setItem('currentUsername', login.username);
+      localStorage.setItem(AUTH_USERNAME, login.username);
       console.log("LOGI TOKE", login.token);
       history.push('/');
       window.location.reload();
