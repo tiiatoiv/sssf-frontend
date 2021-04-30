@@ -14,7 +14,7 @@ const GET_GAMESTATSBYUSER = gql`
     $userID: String!,
     ) {
       gamestatsbyuser (
-        userID: $currentUser,
+        userID: $userID,
     ) {
       userID
       gameResult
