@@ -68,7 +68,7 @@ const AddGameInput = () => {
           <input
             className="mb2"
             value={agent}
-            onChange={e => (setMap(e.target.value))}
+            onChange={e => (setAgent(e.target.value))}
             type="text"
             placeholder="Agent"
           />
