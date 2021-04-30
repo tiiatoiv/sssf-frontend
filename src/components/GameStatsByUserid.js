@@ -15,30 +15,8 @@ const GET_GAMESTATSBYUSER = gql`
     $userID: String!
     ) {
       gamestatsbyuser (
-        userID: $userID
+        userID: $userID,
     ) {
-      userID
-      gameResult
-      agent {
-        id
-        agentName
-        agentType
-      }
-      map {
-        id
-        mapName
-      }
-      kills
-      deaths
-      assist
-    }
-  }
-`;
-
-const GET_GAMESTATS = gql`
-  query GetGameStats {
-    gamestats {
-      userID
       gameResult
       agent {
         id
@@ -57,15 +35,15 @@ const GET_GAMESTATS = gql`
 `;
 
 function GameStatsByUser() {
-  const currentUser = localStorage.getItem(AUTH_USERNAME);
-  console.log("TÄMÄ LOCS", currentUser);
-    const { loading, error, data } = useQuery(GET_GAMESTATSBYUSER,
-      { variables: {
-       userID: currentUser
+  const userID = localStorage.getItem(AUTH_USERNAME);
+  console.log("TÄMÄ LOCS", userID);
+    const { loading, error, data } = useQuery(GET_GAMESTATSBYUSER, {
+      variables: {
+        userID: userID,
       },
     });
-    console.log("TÄMÄ USID", data);
-    console.log(currentUser);
+    console.log("TÄMÄ USDA", data);
+    console.log(userID);
   
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error :(</p>;

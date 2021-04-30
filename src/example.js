@@ -114,7 +114,7 @@ function Home() {
     <div style={{ backgroundColor: '#313131', height: '1000px', marginTop: '80px'}}>
       <h2 style={{color: 'white'}}></h2>
       {authToken ?
-      <GameStats /> : <div style={{height: '1000px'}}><p>You have not logged in.</p></div> }
+      <GameStats /> : <div style={{height: '1000px'}}><p style={{color: 'white'}}>You have not logged in.</p></div> }
     </div>
   );
 }
@@ -123,7 +123,7 @@ function Add() {
   return (
     <div style={{height: '1000px'}}>
       {authToken ?
-      <AddGameInput /> : <div style={{height: '1000px'}}><p>You have not logged in.</p></div>}
+      <AddGameInput /> : <div style={{height: '1000px'}}><p style={{color: 'white'}}>You have not logged in.</p></div>}
     </div>
   );
 }
