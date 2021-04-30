@@ -56,8 +56,8 @@ export default function BasicExample() {
     <ApolloProvider client={client}>
       <div className="example">
     <Router>
-      <div  style={{ backgroundColor: '#313131'  }}>
-        <h1 style={{fontFamily: 'Calibri'}}>Stats App jee</h1>
+      <div  style={{ backgroundColor: '#313131' }}>
+        <h1>Stats App </h1>
         <ul>
           <li style={{ listStyle: 'none'}}>
             <Link to="/">Home</Link>
@@ -110,7 +110,7 @@ function Home() {
   return (
     <div style={{ backgroundColor: '#313131' }}>
       {authToken ?
-      <GameStats /> : <div style={{height: '1000px'}}><h1 style={{fontFamily: 'Calibri'}}>You have not logged in.</h1></div> }
+      <GameStats /> : <div style={{height: '1000px'}}><p>You have not logged in.</p></div> }
     </div>
   );
 }
@@ -119,22 +119,22 @@ function Add() {
   return (
     <div>
       <h2>Add</h2>
-      {authToken && (
-      <AddGameInput /> )}
-      <h2>If you dont see the form youre not logged in</h2>
+      {authToken ?
+      <AddGameInput /> : <div style={{height: '1000px'}}><p>You have not logged in.</p></div>}
     </div>
   );
 }
 
 function Login() {
   return (
-    
+    <div style={{height: '1000px'}}>
     <div className="flex flex-fixed">
     {authToken ? (
       <HeaderPlsWork />
     ) : (
       <Logincomponent />
     )}
+  </div>
   </div>
   );
     }
@@ -145,7 +145,7 @@ function Profile() {
       <h2>Profile</h2>
       <p>Game stats by user token username</p>
       {authToken ? 
-      <GameStatsByUser /> : <p>You have not logged in</p>}
+      <GameStatsByUser /> : <div style={{height: '1000px'}}><p>You have not logged in.</p></div>}
     </div>
   );
 }

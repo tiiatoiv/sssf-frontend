@@ -10,11 +10,40 @@ const client = new ApolloClient({
 });
 
 const GET_GAMESTATSBYUSER = gql`
-  query GetGameStatsByUserID {
-    gameStatsByUser (userID:"testuser") {
+  query GetGameStatsByUserID(
+    $userID: String!,
+    ) {
+      gamestatsbyuser (
+        userID: $currentUser,
+    ) {
       userID
       gameResult
-      agent
+      agent {
+        id
+        agentName
+        agentType
+      }
+      map {
+        id
+        mapName
+      }
+      kills
+      deaths
+      assist
+    }
+  }
+`;
+
+const GET_GAMESTATS = gql`
+  query GetGameStats {
+    gamestats {
+      userID
+      gameResult
+      agent {
+        id
+        agentName
+        agentType
+      }
       map {
         id
         mapName
@@ -27,8 +56,15 @@ const GET_GAMESTATSBYUSER = gql`
 `;
 
 function GameStatsByUser() {
-    const { loading, error, data } = useQuery(GET_GAMESTATSBYUSER);
+  const currentUser = localStorage.getItem('currentUsername');
+  console.log("TÄMÄ LOCS", currentUser);
+    const { loading, error, data } = useQuery(GET_GAMESTATSBYUSER,
+      { variables: {
+       userID: currentUser
+      },
+    });
     console.log("TÄMÄ USID", data);
+    console.log(currentUser);
   
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error :(</p>;
@@ -41,10 +77,8 @@ function GameStatsByUser() {
       
         <h2> { userID } </h2>
         <h3>End result | Agent | Map</h3>
-        <img src={require('./images/' + agent + '.jpg')} alt="Logo" style={{ width: '100px '}}/>;
-        <img src={require('./images/' + map.mapName + '.jpg')} alt="Logo" style={{ width: '100px '}}/>;
-        <p>
-          {gameResult} : {agent} : {map.mapName ? map.mapName : "Jotai muuta tekstii mitä haluut tilalle"}
+             <p>
+          {gameResult} : {agent.agentName} : {map.mapName ? map.mapName : "Jotai muuta tekstii mitä haluut tilalle"}
         </p>
         <h3>Kills, Deaths, Assist</h3>
         <p>

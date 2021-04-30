@@ -11,10 +11,30 @@ input {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 16px;
     margin: 10px;
+
+}
+
+.mb2 {
+    align-self: center;
+    height: 30px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    margin: 10px;
+}
+
+.submitbutton {
+    height: 60px;
+    width: 160px;
+    margin: 10px;
+    background-color: white;
+    font-family: 'Roboto';
+    font-weight: bold;
+    font-size: 20px;
+    border-radius: 10px;
 }
 
 button {
-    height: 40px;
+    height: 60px;
     width: 150px;
     margin: 10px;
     background-color: white;

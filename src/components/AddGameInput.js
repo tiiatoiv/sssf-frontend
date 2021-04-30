@@ -3,6 +3,7 @@ import { gql, useQuery, useMutation } from '@apollo/client';
 import FormControl from 'react-bootstrap';
 import { AUTH_TOKEN } from '../constants';
 import { useHistory } from 'react-router';
+import './addgameinput.css';
 
 const CREATE_GAMESTAT = gql`
 mutation AddGameStat($userID: String!, $gameResult: String!, $agent: ID!, $map: ID!, $kills: String!, $deaths: String!, $assist: String!) {
@@ -39,6 +40,7 @@ const AddGameInput = () => {
     const [addGameStat] = useMutation(CREATE_GAMESTAT,
       { onError: ({ graphQLErrors }) => console.log("TÄMÄ VIRHE", graphQLErrors)});
     return (
+      <div style={{alignItems: 'center'}}>
         <form style={{margin: "10px", padding: "10px"}}
         onSubmit={(e) => {
           e.preventDefault();
@@ -98,8 +100,9 @@ const AddGameInput = () => {
             placeholder="Assist"
           />
         </div>
-        <button type="submit">Submit</button>
+        <button className="submitbutton" type="submit">Submit</button>
       </form>
+      </div>
     );
   };
   

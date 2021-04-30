@@ -3,7 +3,7 @@ import { useHistory } from 'react-router';
 import { useMutation, gql, useQuery, useLazyQuery } from '@apollo/client';
 import { Link } from 'react-router-dom';
 import { AUTH_TOKEN } from '../constants';
-import LoginStyle from './login.css';
+import './login.css';
 
 const SIGNUP_MUTATION = gql`
   mutation SignupMutation(
@@ -71,7 +71,9 @@ const Login = () => {
       password: formState.password,
     },
     onCompleted: ({ login}) => {
+      console.log("TÄMÄ DATA", login);
       localStorage.setItem(AUTH_TOKEN, login.token);
+      localStorage.setItem('currentUsername', login.username);
       console.log("LOGI TOKE", login.token);
       history.push('/profile');
       window.location.reload();
@@ -90,9 +92,7 @@ const Login = () => {
       password: formState.password
     },
     onCompleted: ({ signup }) => {
-      console.log("KIRJ TOKE", signup.token);
-      localStorage.setItem(AUTH_TOKEN, signup.token);
-      history.push('/login');
+      history.push('/');
     }
   });
 

@@ -4,6 +4,7 @@
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 import { gql, useQuery, useMutation } from '@apollo/client';
 import { Row } from 'react-bootstrap';
+import GameStatsStyle from './gamestats.css';
 
 const client = new ApolloClient({
   uri: 'http://localhost:3000/graphql',
@@ -66,11 +67,11 @@ function GameStats() {
         <h2> { userID } </h2>
         <h3>End result | Agent | Map</h3>
           <p>
-          {gameResult} : {agent.agentName} : {map.mapName ? map.mapName : "Jotai muuta tekstii mitä haluut tilalle"}
+          {gameResult} | {agent.agentName} | {map.mapName ? map.mapName : "Jotai muuta tekstii mitä haluut tilalle"}
         </p>
         <h3>Kills, Deaths, Assist</h3>
         <p>
-          {kills} : {deaths} : {assist}
+          {kills} | {deaths} | {assist}
         </p>
         </div>
         </Row>
