@@ -59,6 +59,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [user, setUser] = useState();
   const history = useHistory();
+  const [formerror, setformerror] = useState(""); 
   const [formState, setFormState] = useState({
     login: true,
     username: '',
@@ -81,6 +82,8 @@ const Login = () => {
     onError(error) {
       console.log("TÄMÄ ERRO");
       console.error(error)
+      setformerror(error);
+      
     },
   }
   );
@@ -146,6 +149,7 @@ const Login = () => {
           ? 'need to create an account?'
           : 'already have an account?'}
       </button>
+      <p>{formerror}</p>
     </div>
     </div>
   );

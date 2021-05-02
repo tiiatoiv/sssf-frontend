@@ -60,7 +60,7 @@ function GameStats() {
   
     return data.gamestats.map(({ userID, gameResult, agent, map, kills, deaths, assist }) => 
     (
-      <div style={{ display: "flex", alignItems: "center", flexDirection: "row", display : "inline-block"}}>
+      <div style={{ backgroundColor: 'lightgray', display: "flex", alignItems: "center", flexDirection: "row", display : "inline-block"}}>
       <Row>
       <div style={{backgroundColor: "white", margin: "10px", padding: "20px", width: "200px"}} key={gameResult}>
       

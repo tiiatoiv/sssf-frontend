@@ -3,7 +3,7 @@ import React from 'react';
 import { Row } from 'react-bootstrap';
 import { useHistory } from 'react-router';
 import { Link } from 'react-router-dom';
-import { AUTH_TOKEN } from '../constants';
+import { AUTH_TOKEN, AUTH_USERNAME } from '../constants';
 import Login from './Login.js';
 
 const Header = () => {
@@ -16,7 +16,8 @@ const Header = () => {
             className="ml1 pointer black"
             onClick={() => {
               localStorage.removeItem(AUTH_TOKEN);
-              history.push(`/`);
+              localStorage.removeItem(AUTH_USERNAME);
+              history.push(`/login`);
               window.location.reload();
             }}
           >Log out</button>

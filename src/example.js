@@ -58,7 +58,8 @@ export default function BasicExample() {
     <ApolloProvider client={client}>
       <div className="example">
     <Router>
-      <div  style={{ backgroundColor: '#313131' }}>
+      <div  style={{ backgroundColor: 'white' }}>
+        <div className="navdiv">
         <h1>Stats App </h1>
         <ul>
           <li style={{ listStyle: 'none'}}>
@@ -70,10 +71,11 @@ export default function BasicExample() {
           <li style={{ listStyle: 'none'}}>
             <Link to="/profile">Profile</Link>
           </li>
-          <li style={{ listStyle: 'none', position: 'absolute', right: 100}}>
+          <li style={{ listStyle: 'none'}}>
             <Link to="/login">Login/Logout</Link>
             </li>
         </ul>
+        </div>
 
         <hr />
 
@@ -111,10 +113,10 @@ export default function BasicExample() {
 
 function Home() {
   return (
-    <div style={{ backgroundColor: '#313131', height: '1000px', marginTop: '80px'}}>
+    <div style={{ backgroundColor: 'white', height: '1000px', marginTop: '80px'}}>
       <h2 style={{color: 'white'}}></h2>
       {authToken ?
-      <GameStats /> : <div style={{height: '1000px'}}><p style={{color: 'white'}}>You have not logged in.</p></div> }
+      <GameStats /> : <div style={{height: '1000px'}}><p style={{color: 'black'}}>You have not logged in.</p></div> }
     </div>
   );
 }
@@ -123,7 +125,7 @@ function Add() {
   return (
     <div style={{height: '1000px'}}>
       {authToken ?
-      <AddGameInput /> : <div style={{height: '1000px'}}><p style={{color: 'white'}}>You have not logged in.</p></div>}
+      <AddGameInput /> : <div style={{height: '1000px'}}><p style={{color: 'black'}}>You have not logged in.</p></div>}
     </div>
   );
 }
@@ -135,7 +137,7 @@ function Login() {
     {authToken ? ( <div><p>Log out</p>
       <HeaderPlsWork /></div>
     ) : (
-      <div><p style={{color: 'white', marginTop: '80px'}}>Log in or register</p>
+      <div><p style={{marginTop: '80px'}}>Log in or register</p>
       <Logincomponent /> </div>
     )}
   </div>
@@ -146,8 +148,9 @@ function Login() {
 function Profile() {
   return (
     <div style={{height: '1000px'}}>
-      <h2 style={{color: 'white', marginTop: '60px'}}>Profile</h2>
-      <p style={{color: 'white', marginTop: '20px'}}>Hello {currentUser}!</p>
+      <h2 style={{marginTop: '60px'}}>Profile</h2>
+      {authToken ? (
+      <p style={{marginTop: '20px'}}>Hello {currentUser}!</p>) : <p></p>}
 
       {authToken ? 
       <GameStatsByUser /> : <div style={{height: '1000px'}}><p>You have not logged in.</p></div>}

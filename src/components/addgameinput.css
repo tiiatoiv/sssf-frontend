@@ -3,8 +3,9 @@
 .addform {
     display: inline-block;
     width: 400px;
-    background-color: white;
+    background-color: lightgray;
     height: 600px;
+    margin-top: 100px;
 }
 
 .mb2 {
@@ -18,7 +19,7 @@
 .formdiv {
     display: inline-block;
     width: 400px;
-    background-color: white;
+    background-color: lightgray;
     height: 400px;
 }
 
@@ -36,6 +37,7 @@
 
 form {
     display: inline-block;
+    background-color: lightgrey;
 }
 
 ul {
