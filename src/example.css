@@ -14,6 +14,7 @@
 .example {
     text-align: center;
     background-color: white;
+    width: 100%;
   }
 
   .router {
@@ -47,7 +48,7 @@
     font-family: 'ValorantFont';
   }
   ul {
-
+    width: 100%;
   }
 
   .navdiv {
@@ -64,7 +65,7 @@
       float: none;
       font-weight: bold;
       font-family: 'Roboto';
-      width: 200px;
+      width: 100%;
       background-color: black;
     }
   }
@@ -97,7 +98,7 @@
     float: left;
     font-weight: bold;
     font-family: 'Roboto';
-    width: 160px;
+    width: 300px;
     background-color: black;
   }
 

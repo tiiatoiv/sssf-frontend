@@ -114,7 +114,7 @@ export default function BasicExample() {
 function Home() {
   return (
     <div style={{ backgroundColor: 'white', height: '1000px', marginTop: '80px'}}>
-      <h2 style={{color: 'white'}}></h2>
+      <h2 style={{color: 'white'}}>fddaf</h2>
       {authToken ?
       <GameStats /> : <div style={{height: '1000px'}}><p style={{color: 'black'}}>You have not logged in.</p></div> }
     </div>
@@ -137,7 +137,7 @@ function Login() {
     {authToken ? ( <div><p>Log out</p>
       <HeaderPlsWork /></div>
     ) : (
-      <div><p style={{marginTop: '80px'}}>Log in or register</p>
+      <div>
       <Logincomponent /> </div>
     )}
   </div>
@@ -148,7 +148,7 @@ function Login() {
 function Profile() {
   return (
     <div style={{height: '1000px'}}>
-      <h2 style={{marginTop: '60px'}}>Profile</h2>
+      <h2 style={{marginTop: '60px', fontFamily: 'ValorantFont'}}>Profile</h2>
       {authToken ? (
       <p style={{marginTop: '20px'}}>Hello {currentUser}!</p>) : <p></p>}
 
