@@ -17,6 +17,7 @@ import './example.css';
 import GameStatsByUser from './components/GameStatsByUserid.js';
 import { useHistory } from 'react-router';
 import HeaderPlsWork from './components/HeaderPlsWork.js';
+import EditUserStat from './components/EditUserStat.js';
 
 
 const httpLink = createHttpLink({
@@ -99,6 +100,9 @@ export default function BasicExample() {
           <Route path="/profile">
             <Profile />
           </Route>
+          <Route path="/edit">
+            <Edit />
+          </Route>
         </Switch>
       </div>
     </Router>
@@ -157,3 +161,17 @@ function Profile() {
     </div>
   );
 }
+
+function Edit() {
+  return (
+    <div style={{height: '1000px'}}>
+      <h2 style={{marginTop: '60px', fontFamily: 'ValorantFont'}}>Profile</h2>
+      {authToken ? (
+      <p style={{marginTop: '20px'}}>Hello {currentUser}!</p>) : <p></p>}
+
+      {authToken ? 
+      <EditUserStat /> : <div style={{height: '1000px'}}><p>You have not logged in.</p></div>}
+    </div>
+  );
+}
+
