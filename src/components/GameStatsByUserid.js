@@ -4,7 +4,7 @@ import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 import { gql, useQuery, useMutation } from '@apollo/client';
 import { useState } from 'react';
 import { Row } from 'react-bootstrap';
-import { AUTH_TOKEN, AUTH_USERNAME, CURRENT_EDITIT } from '../constants';
+import { AUTH_TOKEN, AUTH_USERNAME, CURRENT_EDITIT, CURRENT_GAMESTATCOUNT } from '../constants';
 import { useHistory } from 'react-router';
 import './login.css';
 
@@ -71,6 +71,7 @@ function GameStatsByUser() {
     const [assist, setAssist] = useState('');
     const authToken = localStorage.getItem(AUTH_TOKEN);
     const currentUsername = localStorage.getItem(AUTH_USERNAME);
+    const cuurentGameStatCount = localStorage.getItem(CURRENT_GAMESTATCOUNT);
 
   console.log("TÄMÄ LOCS", userID);
 
@@ -116,12 +117,13 @@ const clickDelete = (id) => {
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error :(</p>;
   if (data){
+    localStorage.setItem(CURRENT_GAMESTATCOUNT, data.gameStatsByUser.length);
+    console.log("TÄMÄ PITU", data.gameStatsByUser.length);
     return data.gameStatsByUser.map(({ id, userID, gameResult, agent, map, kills, deaths, assist }) => 
     (
       <div className="statdiv" style={{ backgroundColor: 'lightgray', display: "flex", alignItems: "center", flexDirection: "row", display : "inline-block"}}>
       <Row>
       <div style={{backgroundColor: "white", margin: "10px", padding: "30px", width: "200px"}} key={gameResult}>
-      
         <h2> { userID } </h2>
         <h3>End result | Agent | Map</h3>
              <p className="resultsp">

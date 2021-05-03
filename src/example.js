@@ -11,7 +11,7 @@ import GameStats from './components/GameStats.js';
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 import Logincomponent from './components/Login.js';
 import { setContext } from '@apollo/client/link/context';
-import { AUTH_TOKEN, AUTH_USERNAME } from './constants';
+import { AUTH_TOKEN, AUTH_USERNAME, CURRENT_GAMESTATCOUNT } from './constants';
 import { ApolloLink } from '@apollo/client';
 import { createHttpLink } from 'apollo-link-http';
 import './example.css';
@@ -44,6 +44,7 @@ const client = new ApolloClient({
 
   const authToken = localStorage.getItem(AUTH_TOKEN);
   const currentUser = localStorage.getItem(AUTH_USERNAME);
+  const currentGameStatCount = localStorage.getItem(CURRENT_GAMESTATCOUNT);
 
 // This site has 3 pages, all of which are rendered
 // dynamically in the browser (not server rendered).
@@ -165,7 +166,7 @@ const Profile = () => {
 
       {authToken ? 
       <div>
-        <h2>Your stats</h2>
+        <h2>Your stats | {currentGameStatCount} added</h2>
       <GameStatsByUser /></div> : <div style={{height: '1000px'}}><p>You have not logged in.</p></div>}
     </div>
   );
