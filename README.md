@@ -1,6 +1,6 @@
-# Getting Started with Create React App
+# React/Web client for SSSF course backend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Application is running on https://sssffrontend.herokuapp.com/ (if sleeping might take a while for the app to wake up).
 
 ## Available Scripts
 
