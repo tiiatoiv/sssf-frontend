@@ -60,20 +60,20 @@ function GameStats() {
   
     return data.gamestats.map(({ userID, gameResult, agent, map, kills, deaths, assist }) => 
     (
-      <div style={{ backgroundColor: 'lightgray', display: "flex", alignItems: "center", flexDirection: "row", display : "inline-block"}}>
+      <div className="statdiv" style={{ backgroundColor: 'lightgray', display: "flex", alignItems: "center", flexDirection: "row", display : "inline-block"}}>
       <Row>
-      <div style={{backgroundColor: "white", margin: "10px", padding: "20px", width: "200px"}} key={gameResult}>
+      <div style={{backgroundColor: "white", margin: "10px", padding: "30px", width: "200px"}} key={gameResult}>
       
-        <h2> { userID } </h2>
+        <h2 style={{color: 'rgb(255, 60, 60)'}}> { userID } </h2>
         <h3>End result | Agent | Map</h3>
-          <p>
+          <h2>
           {gameResult} | {agent.agentName} | {map.mapName ? map.mapName : "Jotai muuta tekstii mitä haluut tilalle"}
-        </p>
-        <img src={require('./images/' + agent.agentName + '.jpg')} alt="logo"/>
+        </h2>
+        <img src={require('../../public/' + agent.agentName + '.jpg')} alt="pic loads but doesnt show >:("/>
         <h3>Kills, Deaths, Assist</h3>
-        <p>
+        <h2>
           {kills} | {deaths} | {assist}
-        </p>
+        </h2>
         </div>
         </Row>
         </div>
