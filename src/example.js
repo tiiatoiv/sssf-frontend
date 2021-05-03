@@ -60,10 +60,9 @@ export default function BasicExample() {
     <ApolloProvider client={client}>
       <div className="example">
     <Router>
-      <div  style={{ backgroundColor: 'white' }}>
         <div className="navdiv">
         <h1>Stats App </h1>
-        <ul>
+        <ul style={{marginBottom: '80px', padding: '0px'}}>
           <li style={{ listStyle: 'none'}}>
             <Link to="/">Home</Link>
           </li>
@@ -105,7 +104,6 @@ export default function BasicExample() {
             <Edit />
           </Route>
         </Switch>
-      </div>
     </Router>
     </div>
     </ApolloProvider>
@@ -120,8 +118,11 @@ const Home = () => {
   return (
     <div style={{ backgroundColor: 'white', height: '1000px', marginTop: '80px'}}>
       <h2 style={{color: 'white'}}>fddaf</h2>
-      {authToken ?
-      <GameStats /> : <div style={{height: '1000px'}}><p style={{color: 'black'}}>You have not logged in.</p></div> }
+      {authToken ?<div>
+      <h2 style={{fontSize: '20px'}}>Latest stats</h2>
+      <GameStats /></div> : <div style={{height: '1000px'}}><p style={{color: 'black'}}>You are not logged in.</p>
+      <p style={{marginTop: '60px', fontSize: '16px'}}>Stats App is a React App for submitting and storing your Valorant game stats.</p>
+      <p style={{fontSize: '16px'}}>Register or log in to fetch and add new stats.</p></div> }
     </div>
   );
 }

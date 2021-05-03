@@ -11,6 +11,12 @@
 .wholeapp {
 }
 
+div {
+ /*border-style: solid;
+  border-color: black;
+  border-width: 1px;
+*/}
+
 .example {
     text-align: center;
     background-color: white;
@@ -70,7 +76,9 @@
 
   .navdiv {
     width: 100%;
-    margin-bottom: 180px;
+    margin-bottom: 00px;
+    margin: 0;
+    padding: 0;
   }
 
   @media (max-width: 800px) {
