@@ -87,8 +87,7 @@ const [editGameStat] = useMutation(EDIT_GAMESTAT, {
               }}
             >
               <div className="addform">
-                <h1 style={{fontSize: '20px'}}>Edit stat</h1>
-                <p style={{fontSize: '16px'}}>For now when selecting an agent or a map, if you want to select the default value, please select the other one and then the default again. :p</p>
+                <h1 style={{fontSize: '20px'}}>Edit stat ID: {id}</h1>
                 <h2 style={{marginTop: '40px'}}>UserID for submit: {currentUsername}</h2>
                 <input
                   className="mb2"
@@ -103,6 +102,10 @@ const [editGameStat] = useMutation(EDIT_GAMESTAT, {
                   onChange={e => (setAgent(e.target.value))}>
                   <option value="608af1308115651299266c9b">Killjoy</option>
                   <option value="608c13717b69cca488f2eef0">Cypher</option>
+                  <option value="608ff106db276dc3a5908cf9">Sova</option>
+                  <option value="608ff13bdb276dc3a5908cfa">Omen</option>
+                  <option value="60901ba1506075ce80ec620e">Jett</option>
+                  <option value="60901baf506075ce80ec620f">Reyna</option>
 
                 </select>
                 <select
@@ -137,10 +140,10 @@ const [editGameStat] = useMutation(EDIT_GAMESTAT, {
                   type="text"
                   placeholder="Assist"
                 />
-                <button onClick={(e)=> 
+                <button className="submitbutton" onClick={(e)=> 
                 clickSaveEdit(id)
                 }><h2>
-              Edit</h2>
+              Save</h2>
           </button>
               </div>
             </form>

@@ -67,6 +67,10 @@ const AddGameInput = () => {
             onChange={e => (setAgent(e.target.value))}>
             <option selected value="608af1308115651299266c9b">Killjoy</option>
             <option value="608c13717b69cca488f2eef0">Cypher</option>
+            <option value="608ff106db276dc3a5908cf9">Sova</option>
+            <option value="608ff13bdb276dc3a5908cfa">Omen</option>
+            <option value="60901ba1506075ce80ec620e">Jett</option>
+            <option value="60901baf506075ce80ec620f">Reyna</option>
 
           </select>
           <select
