@@ -34,9 +34,35 @@ const GET_GAMESTATSBYUSER = gql`
   }
 `;
 
+export const DELETE_STAT = gql`
+    mutation deleteStat($id: String){
+    deleteStat(id: $id){
+        userID
+        gameResult
+    }
+    }
+`;
+
 function GameStatsByUser() {
   const userID = localStorage.getItem(AUTH_USERNAME);
+
   console.log("TÄMÄ LOCS", userID);
+  const deleteid = '';
+
+  const [deleteStat] = useMutation(DELETE_STAT, {
+    variables: {
+        id: deleteid,
+    },
+    onCompleted: ({deleteStat}) => {
+        console.log('delete stat');
+        window.location.reload();
+    },
+    onError(error) {
+        console.log(error);
+    }
+});
+
+
     const { loading, error, data } = useQuery(GET_GAMESTATSBYUSER, {
       variables: {
         userID: userID,
@@ -48,7 +74,7 @@ function GameStatsByUser() {
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error :(</p>;
   if (data){
-    return data.gameStatsByUser.map(({ userID, gameResult, agent, map, kills, deaths, assist }) => 
+    return data.gameStatsByUser.map(({ id, userID, gameResult, agent, map, kills, deaths, assist }) => 
     (
       <div style={{ backgroundColor: 'lightgray', display: "flex", alignItems: "center", flexDirection: "row", display : "inline-block"}}>
       <Row>
@@ -63,6 +89,9 @@ function GameStatsByUser() {
         <p>
           {kills} : {deaths} : {assist}
         </p>
+        <button onClick={deleteStat}>
+                Delete
+            </button>
         </div>
         </Row>
         </div>

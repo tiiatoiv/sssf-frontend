@@ -13,14 +13,14 @@ const Header = () => {
       <div className="flex flex-fixed">
         {authToken ? (
           <button
-            className="ml1 pointer black"
+            className="logoutbutton"
             onClick={() => {
               localStorage.removeItem(AUTH_TOKEN);
               localStorage.removeItem(AUTH_USERNAME);
               history.push(`/login`);
               window.location.reload();
             }}
-          >Log out</button>
+          ><h1>Log out</h1></button>
         ) : (
           <Login />
         )}
