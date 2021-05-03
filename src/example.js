@@ -1,3 +1,4 @@
+'use strict';
 import React from "react";
 import {
   BrowserRouter as Router,
@@ -115,7 +116,7 @@ export default function BasicExample() {
 // You can think of these components as "pages"
 // in your app.
 
-function Home() {
+const Home = () => {
   return (
     <div style={{ backgroundColor: 'white', height: '1000px', marginTop: '80px'}}>
       <h2 style={{color: 'white'}}>fddaf</h2>
@@ -125,7 +126,7 @@ function Home() {
   );
 }
 
-function Add() {
+const Add = () => {
   return (
     <div style={{height: '1000px'}}>
       {authToken ?
@@ -134,7 +135,7 @@ function Add() {
   );
 }
 
-function Login() {
+const Login = () => {
   return (
     <div style={{height: '1000px'}}>
     <div className="flex flex-fixed">
@@ -149,20 +150,22 @@ function Login() {
   );
     }
 
-function Profile() {
+const Profile = () => {
   return (
     <div style={{height: '1000px'}}>
       <h2 style={{marginTop: '60px', fontFamily: 'ValorantFont'}}>Profile</h2>
       {authToken ? (
-      <p style={{marginTop: '20px'}}>Hello {currentUser}!</p>) : <p></p>}
+      <p style={{marginTop: '20px'}}>Hello {currentUser}</p>) : <p></p>}
 
       {authToken ? 
-      <GameStatsByUser /> : <div style={{height: '1000px'}}><p>You have not logged in.</p></div>}
+      <div>
+        <h2>Your stats</h2>
+      <GameStatsByUser /></div> : <div style={{height: '1000px'}}><p>You have not logged in.</p></div>}
     </div>
   );
 }
 
-function Edit() {
+const Edit = () => {
   return (
     <div style={{height: '1000px'}}>
       <h2 style={{marginTop: '60px', fontFamily: 'ValorantFont'}}>Profile</h2>
