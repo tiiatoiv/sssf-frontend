@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import { gql, useQuery, useMutation } from '@apollo/client';
+import React, {useState, useEffect} from 'react';
+import { gql, useQuery, useMutation, useLazyQuery } from '@apollo/client';
 import FormControl from 'react-bootstrap';
 import { AUTH_TOKEN, AUTH_USERNAME, CURRENT_EDITIT } from '../constants';
 import { useHistory } from 'react-router';
@@ -24,6 +24,26 @@ mutation AddGameStat($userID: String!, $gameResult: String!, $agent: ID!, $map: 
    assist
  }
 }
+`;
+
+const GET_GAMESTATBYID = gql`
+    query Gamestat($id: ID!){
+      gamestat(id: $id){
+        gameResult
+        agent {
+          id
+          agentName
+          agentType
+        }
+        map {
+          id
+          mapName
+        }
+        kills
+        deaths
+        assist
+    }
+    }
 `;
 
 const EDIT_GAMESTAT = gql`
@@ -59,25 +79,58 @@ const EditUserStat = () => {
     const authToken = localStorage.getItem(AUTH_TOKEN);
     const currentUsername = localStorage.getItem(AUTH_USERNAME);
     const id = localStorage.getItem(CURRENT_EDITIT);
+    
 
-    const [addGameStat] = useMutation(CREATE_GAMESTAT,
-      { onError: ({ graphQLErrors }) => console.log("TÄMÄ VIRHE", graphQLErrors)});
-    
-    
-const [editGameStat] = useMutation(EDIT_GAMESTAT, {
-    variables: {
-    id: id },
-},
-    { onError: ({ graphQLErrors }) => console.log("TÄMÄ VIRHE", graphQLErrors)});
+
+    const [getgamestatdata, { loading, error, data }] = useLazyQuery(GET_GAMESTATBYID, {
+      variables: {
+        id: id,
+      },
+      onCompleted: ({ getgamestatdata }) => {
+        console.log("TÄMÄ IDDA", data);
+        setGameResult(data.gamestat.gameResult);
+        setAgent(data.gamestat.agent);
+        setMap(data.gamestat.map);
+        setKills(data.gamestat.kills);
+        setDeaths(data.gamestat.deaths);
+        setAssist(data.gamestat.assist);
+      },
+      onError(error) {
+        console.log("TÄMÄ ERRO");
+        console.error(error)
+        
+      },
+    }
+    );
+
+
   
+
+   /* const { loading, error, data } = useQuery(GET_GAMESTATBYID,
+      {
+        variables: {
+          id: id,
+        }}); */
+      
+  const [editGameStat] = useMutation(EDIT_GAMESTAT, {
+      variables: {
+      id: id },
+  },
+    { onError: ({ graphQLErrors }) => console.log("TÄMÄ VIRHE", graphQLErrors)});
+
     const clickSaveEdit = (id) =>  {
       console.log("TÄMÄ EDIT", id);
       editGameStat({variables: {id: id, userID: currentUsername, gameResult: gameResult, agent: agent, map: map, kills: kills, deaths: deaths, assist: assist }});
       history.push('./profile');
     }
+     
+
+    if (loading) return <p>Loading...</p>;
+    if (error) return <p>Error :(</p>;  
   
       return (
             <div style={{alignItems: 'center'}}>
+            
               <form style={{margin: "10px", padding: "10px"}}
               onSubmit={(e) => {
                 e.preventDefault();
@@ -94,7 +147,7 @@ const [editGameStat] = useMutation(EDIT_GAMESTAT, {
                   value={gameResult}
                   onChange={e => (setGameResult(e.target.value))}
                   type="text"
-                  placeholder="Game result (e.g. 13-1)"
+                  placeholder={gameResult}
                 />
                 <select
                   className="selectfield"

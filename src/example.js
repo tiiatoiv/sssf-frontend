@@ -67,13 +67,16 @@ export default function BasicExample() {
             <Link to="/">Home</Link>
           </li>
           <li style={{ listStyle: 'none'}}>
-            <Link to="/add">Add</Link>
+          {authToken ? 
+            <Link to="/add">Add</Link> : <Link to="/login">Add</Link> }
           </li>
           <li style={{ listStyle: 'none'}}>
-            <Link to="/profile">Profile</Link>
+            {authToken ? 
+            <Link to="/profile">Profile</Link> : <Link to="/login">Profile</Link> }
           </li>
           <li style={{ listStyle: 'none'}}>
-            <Link to="/login">Login/Logout</Link>
+            {authToken ? <Link to="/login">Logout</Link> :
+            <Link to="/login">Login/Signup</Link> }
             </li>
         </ul>
         </div>
@@ -122,6 +125,7 @@ const Home = () => {
       <h2 style={{fontSize: '20px'}}>Latest stats</h2>
       <GameStats /></div> : <div style={{height: '1000px'}}><p style={{color: 'black'}}>You are not logged in.</p>
       <p style={{marginTop: '60px', fontSize: '16px'}}>Stats App is a React App for submitting and storing your Valorant game stats.</p>
+      <p style={{fontSize: '16px'}}>Find more info about Valorant <a  style={{color: 'black', textDecoration: 'none', fontFamily: 'ValorantFont'}} href={"https://playvalorant.com/en-gb/"}>here</a>.</p>
       <p style={{fontSize: '16px'}}>Register or log in to fetch and add new stats.</p></div> }
     </div>
   );
@@ -140,7 +144,7 @@ const Login = () => {
   return (
     <div style={{height: '1000px'}}>
     <div className="flex flex-fixed">
-    {authToken ? ( <div><p>Log out</p>
+    {authToken ? ( <div>
       <HeaderPlsWork /></div>
     ) : (
       <div>

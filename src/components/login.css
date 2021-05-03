@@ -38,6 +38,7 @@ input {
 
 .logoutbutton {
     height: 70px;
+    background-color: rgb(255, 60, 60);
 }
 
 .deletebutton {
