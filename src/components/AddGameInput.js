@@ -50,20 +50,20 @@ const AddGameInput = () => {
         }}
       >
         <div className="addform">
-          <h3 style={{fontSize: '20px'}}>Add stat</h3>
+          <h1 style={{fontSize: '20px'}}>Add stat</h1>
           <input
               className="mb2"
               value={userID}
               onChange={e => (setUserID(e.target.value))}
               type="text"
-              placeholder="User ID"
+              placeholder="Your username"
             />
           <input
             className="mb2"
             value={gameResult}
             onChange={e => (setGameResult(e.target.value))}
             type="text"
-            placeholder="Game result"
+            placeholder="Game result (e.g. 13-1)"
           />
           <input
             className="mb2"

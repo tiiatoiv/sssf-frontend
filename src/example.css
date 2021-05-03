@@ -49,23 +49,50 @@
   }
   ul {
     width: 100%;
+    float: none;
+  }
+
+  li {
+    display: inline-block;
+    font-weight: bold;
+    font-family: 'Roboto';
+    width: 200px;
+    background-color: black;
+  }
+
+  li a {
+    display: block;
+    padding: 10px;
+    color: #dddddd;
+    text-decoration: none;
+    padding: 14px 16px;
   }
 
   .navdiv {
     width: 100%;
+    margin-bottom: 180px;
   }
 
   @media (max-width: 800px) {
     ul {
-      float: inline-start;
-     
     }
 
     li {
-      float: none;
       font-weight: bold;
       font-family: 'Roboto';
-      width: 100%;
+      width: 200px;
+      background-color: black;
+    }
+  }
+
+  @media (max-width: 400px) {
+    ul {
+    }
+
+    li {
+      font-weight: bold;
+      font-family: 'Roboto';
+      width: 100px;
       background-color: black;
     }
   }
@@ -93,22 +120,6 @@
 .formdiv {
 
 }
-
-  li {
-    float: left;
-    font-weight: bold;
-    font-family: 'Roboto';
-    width: 300px;
-    background-color: black;
-  }
-
-  li a {
-    display: block;
-    padding: 10px;
-    color: #dddddd;
-    text-decoration: none;
-    padding: 14px 16px;
-  }
 
   .loginlink {
     listStyle: 'none';
