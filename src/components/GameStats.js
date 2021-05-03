@@ -67,7 +67,7 @@ function GameStats() {
         <h2 style={{color: 'rgb(255, 60, 60)'}}> { userID } </h2>
         <h3>End result | Agent | Map</h3>
           <h2>
-          {gameResult} | {agent.agentName} | {map.mapName ? map.mapName : "Jotai muuta tekstii mitä haluut tilalle"}
+          {gameResult} | {agent.agentName} | {map.mapName ? map.mapName : ""}
         </h2>
         <h3>Kills, Deaths, Assist</h3>
         <h2>

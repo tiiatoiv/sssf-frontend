@@ -95,8 +95,7 @@ const Login = () => {
       password: formState.password
     },
     onCompleted: ({ signup }) => {
-      history.push('/');
-      window.location.reload();
+      login();
     }
   });
 
