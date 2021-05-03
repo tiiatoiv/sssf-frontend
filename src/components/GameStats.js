@@ -69,7 +69,6 @@ function GameStats() {
           <h2>
           {gameResult} | {agent.agentName} | {map.mapName ? map.mapName : "Jotai muuta tekstii mitä haluut tilalle"}
         </h2>
-        <img src={require('../../public/' + agent.agentName + '.jpg')} alt="pic loads but doesnt show >:("/>
         <h3>Kills, Deaths, Assist</h3>
         <h2>
           {kills} | {deaths} | {assist}
