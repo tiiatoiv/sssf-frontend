@@ -30,8 +30,8 @@ const AddGameInput = () => {
     const history = useHistory();
     const [userID, setUserID] = useState('');
     const [gameResult, setGameResult] = useState('');
-    const [agent, setAgent] = useState('');
-    const [map, setMap] = useState('');
+    const [agent, setAgent] = useState('608af1308115651299266c9b');
+    const [map, setMap] = useState('608af1e88115651299266c9c');
     const [kills, setKills] = useState('');
     const [deaths, setDeaths] = useState('');
     const [assist, setAssist] = useState('');
@@ -52,7 +52,6 @@ const AddGameInput = () => {
       >
         <div className="addform">
           <h1 style={{fontSize: '20px'}}>Add stat</h1>
-          <p style={{fontSize: '16px'}}>For now when selecting an agent or a map, if you want to select the default value, please select the other one and then the default again. :p</p>
           <h2 style={{marginTop: '40px'}}>UserID for submit: {currentUsername}</h2>
           <input
             className="mb2"
@@ -65,7 +64,7 @@ const AddGameInput = () => {
             className="selectfield"
             value={agent}
             onChange={e => (setAgent(e.target.value))}>
-            <option value="608af1308115651299266c9b">Killjoy</option>
+            <option selected value="608af1308115651299266c9b">Killjoy</option>
             <option value="608c13717b69cca488f2eef0">Cypher</option>
 
           </select>
@@ -73,7 +72,7 @@ const AddGameInput = () => {
             className="selectfield"
             value={map}
             onChange={e => (setMap(e.target.value))}>
-            <option value="608af1e88115651299266c9c">Ascent</option>
+            <option selected value="608af1e88115651299266c9c">Ascent</option>
             <option value="608c13847b69cca488f2eef1">Bind</option>
             <option value="608ff2b6db276dc3a5908cfb">Split</option>
             <option value="608ff2c2db276dc3a5908cfc">Haven</option>
