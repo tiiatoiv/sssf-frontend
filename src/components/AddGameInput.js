@@ -51,6 +51,7 @@ const AddGameInput = () => {
       >
         <div className="addform">
           <h1 style={{fontSize: '20px'}}>Add stat</h1>
+          <p>For now when selecting an agent or a map, if you want to select the default value, please select the other one and then the default again. :p</p>
           <input
               className="mb2"
               value={userID}
