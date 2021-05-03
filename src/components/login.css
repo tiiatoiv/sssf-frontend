@@ -40,6 +40,14 @@ input {
     height: 70px;
 }
 
+.deletebutton {
+    background-color: rgb(255, 60, 60);
+}
+
+.resultsp {
+    font-family: 'ValorantFont';
+  }
+
 button {
     height: 50px;
     width: 200px;

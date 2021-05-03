@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import { gql, useQuery, useMutation } from '@apollo/client';
 import FormControl from 'react-bootstrap';
-import { AUTH_TOKEN } from '../constants';
+import { AUTH_TOKEN, AUTH_USERNAME } from '../constants';
 import { useHistory } from 'react-router';
 import './addgameinput.css';
 
@@ -36,6 +36,7 @@ const AddGameInput = () => {
     const [deaths, setDeaths] = useState('');
     const [assist, setAssist] = useState('');
     const authToken = localStorage.getItem(AUTH_TOKEN);
+    const currentUsername = localStorage.getItem(AUTH_USERNAME);
 
     const [addGameStat] = useMutation(CREATE_GAMESTAT,
       { onError: ({ graphQLErrors }) => console.log("TÄMÄ VIRHE", graphQLErrors)});
@@ -44,21 +45,15 @@ const AddGameInput = () => {
         <form style={{margin: "10px", padding: "10px"}}
         onSubmit={(e) => {
           e.preventDefault();
-          addGameStat({variables: {userID: userID, gameResult: gameResult, agent: agent, map: map, kills: kills, deaths: deaths, assist: assist }});
+          addGameStat({variables: {userID: currentUsername, gameResult: gameResult, agent: agent, map: map, kills: kills, deaths: deaths, assist: assist }});
           console.log( gameResult, kills );
           history.push('/');
         }}
       >
         <div className="addform">
           <h1 style={{fontSize: '20px'}}>Add stat</h1>
-          <p>For now when selecting an agent or a map, if you want to select the default value, please select the other one and then the default again. :p</p>
-          <input
-              className="mb2"
-              value={userID}
-              onChange={e => (setUserID(e.target.value))}
-              type="text"
-              placeholder="Your username"
-            />
+          <p style={{fontSize: '16px'}}>For now when selecting an agent or a map, if you want to select the default value, please select the other one and then the default again. :p</p>
+          <h2 style={{marginTop: '40px'}}>UserID for submit: {currentUsername}</h2>
           <input
             className="mb2"
             value={gameResult}
@@ -67,6 +62,7 @@ const AddGameInput = () => {
             placeholder="Game result (e.g. 13-1)"
           />
           <select
+            className="selectfield"
             value={agent}
             onChange={e => (setAgent(e.target.value))}>
             <option value="608af1308115651299266c9b">Killjoy</option>
@@ -74,10 +70,14 @@ const AddGameInput = () => {
 
           </select>
           <select
+            className="selectfield"
             value={map}
             onChange={e => (setMap(e.target.value))}>
             <option value="608af1e88115651299266c9c">Ascent</option>
             <option value="608c13847b69cca488f2eef1">Bind</option>
+            <option value="608ff2b6db276dc3a5908cfb">Split</option>
+            <option value="608ff2c2db276dc3a5908cfc">Haven</option>
+            <option value="608ff2cedb276dc3a5908cfd">Icebox</option>
 
           </select>
           <input
