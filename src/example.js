@@ -114,7 +114,7 @@ export default function BasicExample() {
 function Home() {
   return (
     <div style={{ backgroundColor: 'white', height: '1000px', marginTop: '80px'}}>
-      <h2 style={{color: 'white'}}></h2>
+      <h2 style={{color: 'white'}}>fddaf</h2>
       {authToken ?
       <GameStats /> : <div style={{height: '1000px'}}><p style={{color: 'black'}}>You have not logged in.</p></div> }
     </div>
