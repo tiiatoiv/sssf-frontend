@@ -72,13 +72,13 @@ const AddGameInput = () => {
             <option value="608c13717b69cca488f2eef0">Cypher</option>
 
           </select>
-          <input
-            className="mb2"
+          <select
             value={map}
-            onChange={e => (setMap(e.target.value))}
-            type="text"
-            placeholder="Map"
-          />
+            onChange={e => (setMap(e.target.map))}>
+            <option value="608af1e88115651299266c9c">Ascent</option>
+            <option value="608c13847b69cca488f2eef1">Bind</option>
+
+          </select>
           <input
             className="mb2"
             value={kills}
