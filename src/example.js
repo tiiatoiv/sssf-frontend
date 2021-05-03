@@ -124,9 +124,10 @@ const Home = () => {
       {authToken ?<div>
       <h2 style={{fontSize: '20px'}}>Latest stats</h2>
       <GameStats /></div> : <div style={{height: '1000px'}}><p style={{color: 'black'}}>You are not logged in.</p>
-      <p style={{marginTop: '60px', fontSize: '16px'}}>Stats App is a React App for submitting and storing your Valorant game stats.</p>
-      <p style={{fontSize: '16px'}}>Find more info about Valorant <a  style={{color: 'black', textDecoration: 'none', fontFamily: 'ValorantFont'}} href={"https://playvalorant.com/en-gb/"}>here</a>.</p>
-      <p style={{fontSize: '16px'}}>Register or log in to fetch and add new stats.</p></div> }
+      <p style={{marginTop: '100px', fontSize: '16px'}}>Stats App is a React App for submitting and storing your Valorant game stats.</p>
+      <p style={{fontSize: '16px', marginTop: '0px'}}>Find more info about Valorant <a  style={{color: 'black', textDecoration: 'none', fontFamily: 'ValorantFont'}} href={"https://playvalorant.com/en-gb/"}>here</a>.</p>
+      <p style={{fontSize: '16px'}}>Register or log in to fetch and add new stats.</p>
+     </div> }
     </div>
   );
 }
