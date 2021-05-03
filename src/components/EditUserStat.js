@@ -103,14 +103,6 @@ const EditUserStat = () => {
     }
     );
 
-
-  
-
-   /* const { loading, error, data } = useQuery(GET_GAMESTATBYID,
-      {
-        variables: {
-          id: id,
-        }}); */
       
   const [editGameStat] = useMutation(EDIT_GAMESTAT, {
       variables: {
@@ -123,13 +115,21 @@ const EditUserStat = () => {
       editGameStat({variables: {id: id, userID: currentUsername, gameResult: gameResult, agent: agent, map: map, kills: kills, deaths: deaths, assist: assist }});
       history.push('./profile');
     }
-     
+
+   /* const { loading, error, data } = useQuery(GET_GAMESTATBYID,
+      {
+        variables: {
+          id: id,
+        }});
+        console.log("TÄMÄ IDDA", data);
+     */
 
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error :(</p>;  
   
-      return (
+      return ( 
             <div style={{alignItems: 'center'}}>
+              <p>Current data: {gameResult, agent.agentName}</p>
             
               <form style={{margin: "10px", padding: "10px"}}
               onSubmit={(e) => {
@@ -201,7 +201,6 @@ const EditUserStat = () => {
               </div>
             </form>
             </div>
-      )
-  };
+      )};
   
   export default EditUserStat;

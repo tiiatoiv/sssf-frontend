@@ -62,7 +62,7 @@ export default function BasicExample() {
     <Router>
         <div className="navdiv">
         <h1>Stats App </h1>
-        <ul style={{marginBottom: '80px', padding: '0px'}}>
+        <ul style={{marginBottom: '100px', padding: '0px'}}>
           <li style={{ listStyle: 'none'}}>
             <Link to="/">Home</Link>
           </li>
