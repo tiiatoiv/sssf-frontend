@@ -73,11 +73,9 @@ const [editGameStat] = useMutation(EDIT_GAMESTAT, {
     const clickSaveEdit = (id) =>  {
       console.log("TÄMÄ EDIT", id);
       editGameStat({variables: {id: id, userID: currentUsername, gameResult: gameResult, agent: agent, map: map, kills: kills, deaths: deaths, assist: assist }});
+      history.push('./profile');
     }
   
-    
-    
-    
       return (
             <div style={{alignItems: 'center'}}>
               <form style={{margin: "10px", padding: "10px"}}

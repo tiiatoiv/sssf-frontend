@@ -48,6 +48,7 @@ const AddGameInput = () => {
           addGameStat({variables: {userID: currentUsername, gameResult: gameResult, agent: agent, map: map, kills: kills, deaths: deaths, assist: assist }});
           console.log( gameResult, kills );
           history.push('/');
+          window.location.reload();
         }}
       >
         <div className="addform">
