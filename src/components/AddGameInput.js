@@ -75,7 +75,7 @@ const AddGameInput = () => {
           </select>
           <select
             value={map}
-            onChange={e => (setMap(e.target.map))}>
+            onChange={e => (setMap(e.target.value))}>
             <option value="608af1e88115651299266c9c">Ascent</option>
             <option value="608c13847b69cca488f2eef1">Bind</option>
 
