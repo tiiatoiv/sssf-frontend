@@ -51,6 +51,7 @@ const AddGameInput = () => {
       >
         <div className="addform">
           <h1 style={{fontSize: '20px'}}>Add stat</h1>
+          <p>For now when selecting an agent or a map, if you want to select the default value, please select the other one and then the default again. :p</p>
           <input
               className="mb2"
               value={userID}
@@ -74,7 +75,7 @@ const AddGameInput = () => {
           </select>
           <select
             value={map}
-            onChange={e => (setMap(e.target.map))}>
+            onChange={e => (setMap(e.target.value))}>
             <option value="608af1e88115651299266c9c">Ascent</option>
             <option value="608c13847b69cca488f2eef1">Bind</option>
 
