@@ -2,8 +2,10 @@
 
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 import { gql, useQuery, useMutation } from '@apollo/client';
+import { useState } from 'react';
 import { Row } from 'react-bootstrap';
 import { AUTH_USERNAME } from '../constants';
+import { useHistory } from 'react-router';
 
 const client = new ApolloClient({
   uri: 'http://localhost:3000/graphql',
@@ -17,6 +19,7 @@ const GET_GAMESTATSBYUSER = gql`
       gameStatsByUser (
         userID: $userID,
     ) {
+      id
       gameResult
       agent {
         id
@@ -35,32 +38,54 @@ const GET_GAMESTATSBYUSER = gql`
 `;
 
 export const DELETE_STAT = gql`
-    mutation deleteStat($id: String){
-    deleteStat(id: $id){
-        userID
+    mutation deleteStat($id: ID!){
+      deleteGameStat(id: $id){
         gameResult
+        agent {
+          id
+          agentName
+          agentType
+        }
+        map {
+          id
+          mapName
+        }
+        kills
+        deaths
+        assist
     }
     }
 `;
 
 function GameStatsByUser() {
+  const history = useHistory();
   const userID = localStorage.getItem(AUTH_USERNAME);
+  const [deleteid, setDeleteid] = useState("");
 
   console.log("TÄMÄ LOCS", userID);
-  const deleteid = '';
 
   const [deleteStat] = useMutation(DELETE_STAT, {
     variables: {
-        id: deleteid,
+      id: deleteid,
     },
     onCompleted: ({deleteStat}) => {
         console.log('delete stat');
+        history.push('/profile');
         window.location.reload();
+      
     },
     onError(error) {
+      console.log("TÄMÄ DELE", deleteid)
         console.log(error);
     }
 });
+
+const clickDelete = (id) => {
+  console.log("TÄMÄ DELT", id)
+  setDeleteid(id);
+  console.log("TÄMÄ DELK", deleteid);
+  deleteStat();
+  };
 
 
     const { loading, error, data } = useQuery(GET_GAMESTATSBYUSER, {
@@ -89,7 +114,9 @@ function GameStatsByUser() {
         <p>
           {kills} : {deaths} : {assist}
         </p>
-        <button onClick={deleteStat}>
+        <button onClick={(e)=> 
+          clickDelete(id)
+          }>
                 Delete
             </button>
         </div>
