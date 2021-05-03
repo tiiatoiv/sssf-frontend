@@ -60,6 +60,7 @@ const AddGameInput = () => {
             onChange={e => (setGameResult(e.target.value))}
             type="text"
             placeholder="Game result (e.g. 13-1)"
+            maxLength="20"
           />
           <select
             className="selectfield"
@@ -90,6 +91,7 @@ const AddGameInput = () => {
             onChange={e => (setKills(e.target.value))}
             type="text"
             placeholder="Kills"
+            maxLength="20"
           />
           <input
             className="mb2"
@@ -97,6 +99,7 @@ const AddGameInput = () => {
             onChange={e => (setDeaths(e.target.value))}
             type="text"
             placeholder="Deaths"
+            maxLength="20"
           />
           <input
             className="mb2"
@@ -104,6 +107,7 @@ const AddGameInput = () => {
             onChange={e => (setAssist(e.target.value))}
             type="text"
             placeholder="Assist"
+            maxLength="20"
           />
           <button className="submitbutton" type="submit">Submit</button>
         </div>
