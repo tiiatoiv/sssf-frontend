@@ -1,4 +1,4 @@
-# React/Web client for SSSF course backend
+# React/Web client for SSSF course backend 
 
 Application is running on https://sssffrontend.herokuapp.com/ (if sleeping might take a while for the app to wake up).
 
